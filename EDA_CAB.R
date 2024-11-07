@@ -1,0 +1,18 @@
+data("storms")
+library(tidyverse)
+data <- storms
+head(data)
+str(data)
+summary(data)
+sapply(data, function(x) sum(is.na(x)))
+ata<- data %>%
+  mutate(lat=factor(lat), long=factor(long), category=factor(category))
+str(data)  
+ggplot(data, aes(x=pressure))+ geom_histogram(bins=10, fill='skyblue', color='black')+ labs(title="distribution of pressure", x="pressure", y="Count")
+ggplot(data, aes(x=wind))+geom_histogram(bins=10, fill='red', color='black')+labs(title="Histogram of Wind", x="Wind Speed", y="Count")
+ggplot(data, aes(x=year))+ geom_bar(fill="lightgreen", color="blue")+ labs(title="Count of Storms by Year", x="Year", y="Count")
+ggplot(data, aes(x=wind, y=pressure))+ geom_point(color="blue")+ labs(title="Wind vs Pressure", x="Wind", y="Pressure")
+ggplot(data, aes(x=year, y=status))+ geom_boxplot(fill="orange", color="black")+ labs(title="Year by Status", x="Year", y="Status")
+cor_matrix<-cor(data %>% select_if(is.numeric))
+print(cor_matrix)
+ggplot(data=as.data.frame(as.table(cor_matrix)), aes(Var1, Var2, fill=Freq))+ geom_tile(color="white")+ scale_fill_gradient2(low="blue", high="red", mid="white", midpoint=0, limit=c(-1,1))+geom_text(aes(label=round(Freq,2)), color ="black", size=3)+ theme_minimal()
