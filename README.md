@@ -1,0 +1,1 @@
+This github file contains my R Studio file and my Exploratory Analysis pdf file regarding the "storms" dataset in R. This dataset and analysis was interesting to do and gave and provided me with quality insight and information to larger storms like hurricanes and tropical storms.
